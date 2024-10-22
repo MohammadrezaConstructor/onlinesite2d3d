@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Sample Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            color: #343a40;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        form {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0b2ada;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0b2ada;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+            display: block;
+        }
+
+    
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 0;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input {
+            margin-right: 10px; 
+            width: auto; 
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            form {
+                width: 100%;
+            }
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #0b2ada;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .header img {
+            margin-left: 10px;
+        }
+
+        .header h1 {
+            flex-grow: 1;
+            text-align: center;
+            margin-left: -10%;
+        }
+
+        #customAlert {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none; /* Custom alert is hidden by default */
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .modal-content button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #0b2ada;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .modal-content button:hover {
+      background-color: #0b2ada;
+    }
+
+    </style>
+</head>
+<body>
+  
+<div >
+        <img src="header.jpg" alt="Logo" width="100%">  
+</div>
+
+    
+<!-- Custom Alert Box -->
+<div id="customAlert">
+    <div class="modal-content">
+      <p>On the next page, you will enter a virtual online shopping environment with a<br> traditional website design.<br><br> You will have a clothing item to review and purchase.<br> Afterward, please share your thoughts and feelings about this experience, <br>comparing it to a real-life shopping experience.</p>
+      <button onclick="closeCustomAlert()">OK</button>
+    </div>
+  </div>
+<script>
+
+function showCustomAlert() {
+        document.getElementById('customAlert').style.display = 'flex';
+    }
+
+    // Function to close custom alert and redirect
+    function closeCustomAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+
+    // Redirect to next page
+    const code = document.getElementById('code').value;
+    const gen = document.getElementById('gender').value;
+    
+    if (gen == 'male') {
+        window.location.href = `male1.html?code=${encodeURIComponent(code)}`;
+    } else if (gen == 'female') {
+        window.location.href = `female1.html?code=${encodeURIComponent(code)}`;
+    } else {
+        window.location.href = `others1.html?code=${encodeURIComponent(code)}`;
+    }
+}
+
+</script>
+    <form id="sampleForm">
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="non-binary">Non-binary</option>
+            <option value="trans_male">Trans Male</option>
+            <option value="trans_female">Trans Female</option>
+            <option value="genderqueer">Genderqueer</option>
+            <option value="genderfluid">Genderfluid</option>
+            <option value="agender">Agender</option>
+            <option value="bigender">Bigender</option>
+            <option value="two-spirit">Two-Spirit</option>
+            <option value="prefer_not_to_say">Prefer not to say</option>
+            <option value="other">Other</option>
+        </select>
+
+       <!-- <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required>-->
+        <label for="age">Age:</label>
+        <select id="age" name="age">
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="more than 25">more than 25</option>
+        </select>
+
+
+        <label for="edu">Highest Educational Qualification:</label>
+        <select id="edu" name="edu">
+            <option value="bachelor">Bachelor’s degree</option>
+            <option value="master">Master’s degree</option>
+            <option value="phd">Doctoral degree</option>
+            <option value="others">Others</option>
+        </select>
+
+        <label for="timesm">On average, how many hours per day do you spend on social media?</label>
+        <select id="timesm" name="timesm">
+            <option value="never">Never</option>
+            <option value="less_than_1">Less than 1 hour</option>
+            <option value="1_3">1-3 hours</option>
+            <option value="4_6">4-6 hours</option>
+            <option value="more_than_6">More than 6 hours</option>
+        </select>
+
+        <label for="purchase">Have you ever made an online purchase?</label>
+        <select id="purchase" name="purchase">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="exp">What is your experience with online shopping?</label>
+        <select id="exp" name="exp">
+            <option value="1">Very Satisfied</option>
+            <option value="2">Satisfied</option>
+            <option value="3">Neutral</option>
+            <option value="4">Unsatisfied</option>
+            <option value="5">Very Unsatisfied</option>
+        </select>
+
+        <label>Which social media platforms do you use? (Check all that apply)</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="ch1" name="sm1" value="Instagram"> Instagram</label>
+            <label><input type="checkbox" id="ch2" name="sm1" value="Facebook"> Facebook</label>
+            <label><input type="checkbox" id="ch3" name="sm1" value="Youtube"> Youtube</label>
+            <label><input type="checkbox" id="ch4" name="sm1" value="Telegram"> Telegram</label>
+        </div>
+        <label for="sm11">Others:</label>
+        <input type="text" id="sm11" name="sm11">
+
+        <label>Why do you spend time on social media? (Check all that apply)</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="ch5" name="sm2" value="Research"> Research</label>
+            <label><input type="checkbox" id="ch6" name="sm2" value="Shopping"> Shopping</label>
+            <label><input type="checkbox" id="ch7" name="sm2" value="Entertainment"> Entertainment</label>
+        </div>
+        <label for="sm22">Others:</label>
+        <input type="text" id="sm22" name="sm22">
+
+        <label for="msg">Message:</label>
+        <textarea id="msg" name="msg" rows="4"></textarea>
+
+        <button type="submit" id="myButton">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('sampleForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const selectsm1 = Array.from(document.querySelectorAll('input[name="sm1"]:checked')).map(checkbox => checkbox.value);
+            const selectsm2 = Array.from(document.querySelectorAll('input[name="sm2"]:checked')).map(checkbox => checkbox.value);
+
+            const formData = {
+                code: document.getElementById('code').value,
+                gender: document.getElementById('gender').value,
+                age: document.getElementById('age').value,
+                edu: document.getElementById('edu').value,
+                timesm: document.getElementById('timesm').value,
+                purchase: document.getElementById('purchase').value,
+                exp: document.getElementById('exp').value,
+                sm1: selectsm1,
+                sm11: document.getElementById('sm11').value,
+                sm2: selectsm2,
+                sm22: document.getElementById('sm22').value,
+                msg: document.getElementById('msg').value
+            };
+            try {
+                const response = await fetch('http://localhost:3000/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                const result = await response.json();
+                showCustomAlert();  // Show custom alert after saving comment
+
+             //   alert(result.message);
+                
+            } catch (error) {
+                alert('Error submitting form.');
+            }
+
+        });
+    </script>
+</body>
+</html>

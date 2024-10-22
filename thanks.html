@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #0b2ada;
+            font-size: 3em;
+        }
+
+        #clapping-hands {
+            width: 150px;
+            margin: 20px auto;
+            animation: clap 0.5s infinite alternate;
+        }
+
+        @keyframes clap {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Thank You!</h1>
+    <p>Your submission has been received.</p>
+
+  
+
+    <!-- کانواس برای افکت فشفشه -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script>
+        
+        function launchConfetti() {
+            var duration = 5 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                // هر بار که این تابع اجرا می‌شود، افکت فشفشه نمایش داده می‌شود
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // شروع افکت فشفشه پس از بارگذاری صفحه
+        window.onload = launchConfetti;
+    </script>
+</body>
+</html>

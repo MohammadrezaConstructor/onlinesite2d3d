@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Shape Gallery with Comments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h4{
+      color:red;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      background-color: #0b2ada;
+      color: white;
+      padding: 1px 0;
+    }
+    .header img {
+      margin-left: 10px;
+    }
+    .header h1 {
+      flex-grow: 1;
+      text-align: center;
+      margin-left: -10%;
+    }
+    .gallery {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .gallery-item {
+      flex: 1 1 calc(25% - 10px);
+      margin: 10px;
+      border: 1px solid #ddd;
+      padding: 1px;
+      box-sizing: border-box;
+    }
+    .gallery-item iframe {
+      width: 100%;
+      height: 200px;
+    }
+    .description-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1px 0;
+    }
+    .description-table td {
+      padding: 1px;
+      border: 1px solid #ddd;
+    }
+    .comment-section {
+      margin: 1px 0;
+    }
+    .comment-section h3 {
+      margin-bottom: 1px;
+    }
+    .comment-section textarea {
+      width: 80%;
+      padding: 1px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .comment-section button {
+      background-color: #0b2ada;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .comment-section button:hover {
+      background-color: #0b2ada;
+    }
+    #customAlert {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none; /* Custom alert is hidden by default */
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .modal-content button {
+      margin-top: 10px;
+      padding: 1px 1px;
+      background-color: #0b2ada;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .modal-content button:hover {
+      background-color: #0b2ada;
+    }
+
+    /* Fullscreen overlay styles */
+    .fullscreen {
+      display: none;                 /* Initially hidden */
+      position: fixed;               /* Fixed positioning */
+      top: 0;                        /* Fullscreen */
+      left: 0;
+      width: 100vw;                  /* Full width */
+      height: 100vh;                 /* Full height */
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+      justify-content: center;       /* Center the image */
+      align-items: center;           /* Center the image */
+    }
+    .fullscreen img {
+      max-width: 90%;                /* Max width for fullscreen image */
+      max-height: 90%;               /* Max height for fullscreen image */
+    }
+  </style>
+</head>
+<body>
+  <div >
+    <img src="header.jpg" alt="Logo" width="100%">  
+</div>
+
+  <!-- Custom Alert Box -->
+  <div id="customAlert">
+    <div class="modal-content">
+      <p>On the next page, you will enter a virtual online shopping environment with a<br> 3D website design.<br><br> You will have a clothing item to review and purchase.<br> Afterward, please share your thoughts and feelings about this experience, <br>comparing it to a real-life shopping experience.</p>
+      <button onclick="closeCustomAlert()">OK</button>
+    </div>
+  </div>
+
+  <p id="welcomeMessage"></p>
+  <script>
+    // Function to get query parameter "name" from URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Get value of "code" from URL
+    const code = getQueryParam('code');
+
+    // Display welcome message
+    const welcomeMessageElement = document.getElementById('welcomeMessage');
+    if (code) {
+        welcomeMessageElement.textContent = `Hello, ${code}! Welcome to the new page!`;
+    } else {
+        welcomeMessageElement.textContent = 'Hello! Welcome to the new page!';
+    }
+
+    // Function to show custom alert box
+    function showCustomAlert() {
+        document.getElementById('customAlert').style.display = 'flex';
+    }
+
+    // Function to close custom alert and redirect
+    function closeCustomAlert() {
+        document.getElementById('customAlert').style.display = 'none';
+        window.location.href = `female2.html?code=${encodeURIComponent(code)}`;
+    }
+
+    // Fullscreen functionality
+    function openFullscreenImage(src) {
+      const fullscreenDiv = document.getElementById('fullscreenImage');
+      const fullscreenImg = document.getElementById('fullscreenImg');
+      fullscreenImg.src = src;       // Set the image source
+      fullscreenDiv.style.display = 'flex'; // Show the fullscreen div
+    }
+
+    function closeFullscreenImage() {
+      const fullscreenDiv = document.getElementById('fullscreenImage');
+      fullscreenDiv.style.display = 'none'; // Hide the fullscreen div
+    }
+  </script>
+
+  <div class="gallery">
+    <div class="gallery-item">
+      <table class="description-table">
+        <tr>
+          <td><a href="javascript:void(0);" onclick="openFullscreenImage('images/f1.jpg')"><img title="click image to open extended view" width="200" height="200" src='images/f1.jpg'></a></td>
+          <td><a href="javascript:void(0);" onclick="openFullscreenImage('images/f2.jpg')"><img title="click image to open extended view" width="200" height="200" src='images/f2.jpg'></a></td>
+          <td><a href="javascript:void(0);" onclick="openFullscreenImage('images/f3.jpg')"><img title="click image to open extended view" width="200" height="200" src='images/f3.jpg'></a></td>
+          <td><a href="javascript:void(0);" onclick="openFullscreenImage('images/f4.jpg')"><img title="click image to open extended view" width="200" height="200" src='images/f4.jpg'></a></td>
+        </tr>
+        <tr> <td colspan="4" height="1" ><h4>click image to open extended view</h4></td></tr>
+      </table>
+      <table class="description-table">
+        <tr>
+          <td colspan="2"> <b>White Suit Set </b>
+
+            <ul style="text-align: left;">
+              <li ><strong>Price:</strong> Set a price based on material and market positioning, typically ranging from €50 to €100.</li>
+              <li><strong>Material:</strong> High-quality blend of polyester and cotton, offering comfort and durability.</li>
+              <li><strong>Style:</strong> A sleek, modern design, featuring a tailored fit suitable for formal events, weddings, or business occasions.</li>
+              <li><strong>Features:</strong> Includes a jacket, pants, and optional waistcoat. Available in customizable sizes for an elegant, professional look.</li>
+            </ul></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="comment-section">
+    <h3>Please write your comment ...</h3><h4>You can press "Windows key + . "  to open the emoji picker and insert emojis.</h4>
+    <textarea id="textToExport" rows="10" cols="50"></textarea>
+    <br>
+    <button onclick="saveCommentAndRedirect()">Save Comment</button>
+  </div>
+
+  <script>
+    function saveComment() {
+      const comment = document.getElementById('textToExport').value;
+      console.log('Saving comment:', comment);
+
+      fetch('http://localhost:3000/traditional-comments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text: comment, code: code  })
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log('Comment saved:', data);
+      })
+      .catch(error => {
+        console.error('Error saving comment:', error);
+      });
+    }
+
+    function saveCommentAndRedirect() {
+      saveComment();
+      showCustomAlert();  // Show custom alert after saving comment
+    }
+  </script>
+
+  <!-- Fullscreen Image Overlay -->
+  <div class="fullscreen" id="fullscreenImage" onclick="closeFullscreenImage()">
+    <img id="fullscreenImg" src="" alt="Fullscreen Image">
+  </div>
+</body>
+</html>
